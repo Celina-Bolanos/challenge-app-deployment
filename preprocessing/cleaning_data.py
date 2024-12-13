@@ -16,7 +16,7 @@ class ZipCode():
         return f'Zipcode: {self.zip_code}'
     
     def get_coordinates(self):
-        zip_codes_df = pd.read_csv('../utils/zipcode_belgium.csv')
+        zip_codes_df = pd.read_csv('utils/zipcode_belgium.csv')
         row = zip_codes_df[zip_codes_df["zip_code_col"] == self.zip_code]
         self.latitude = float(row["latitude"].values[0])
         self.longitude = float(row["longitude"].values[0])
@@ -41,7 +41,7 @@ class Province():
         """
         Returns the laitude and longitude of the province's capital.
         """
-        provinces_df = pd.read_csv('../utils/provinces_zip_codes.csv')
+        provinces_df = pd.read_csv('utils/provinces_zip_codes.csv')
         province_data = provinces_df[provinces_df["province"] == self.name]
         self.latitude = float(province_data["latitude"].values[0])
         self.longitude = float(province_data["longitude"].values[0])
@@ -113,7 +113,7 @@ class Property():
 
     def encode_type_of_property(self):
         """Converts type of property to ordinal number."""
-        self.type_of_property =  0 if self.type_of_property == 'Apartment' else 1
+        self.type_of_property =  0 if self.type_of_property.lowe() == 'Apartment' else 1
         return self.type_of_property
 
     def encode_subtype_of_property(self):
@@ -178,8 +178,4 @@ def preprocess(property):
     property_df = property.to_dataframe()
     property = property_df.values
     return property
-
-#casa = Property('House', 'villa', 250, 'Good', 'equipped', 15, 50, 4, 2180, 'Antwerpen')
-#casa_process = preprocess(casa)
-#print(casa_process)
 
