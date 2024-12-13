@@ -67,6 +67,6 @@ if st.button('Predict'):
     processed_data = preprocess(house)
     
     prediction = predict(processed_data)
-    predicted_price = prediction[0,0]
+    predicted_price = round(prediction[0,0])
     print(type(predicted_price))
     st.write(f'The predicted price for this property is: {predicted_price}')
