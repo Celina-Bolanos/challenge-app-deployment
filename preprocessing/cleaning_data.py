@@ -16,7 +16,7 @@ class ZipCode():
         return f'Zipcode: {self.zip_code}'
     
     def get_coordinates(self):
-        zip_codes_df = pd.read_csv('..utils/zipcode_belgium.csv')
+        zip_codes_df = pd.read_csv('utils/zipcode_belgium.csv')
         print(zip_codes_df.head())
         row = zip_codes_df[zip_codes_df["zip_code_col"] == self.zip_code]
         self.latitude = float(row["latitude"].values[0])
@@ -42,7 +42,7 @@ class Province():
         """
         Returns the laitude and longitude of the province's capital.
         """
-        provinces_df = pd.read_csv('..utils/provinces_zip_codes.csv')
+        provinces_df = pd.read_csv('utils/provinces_zip_codes.csv')
         province_data = provinces_df[provinces_df["province"] == self.name]
         self.latitude = float(province_data["latitude"].values[0])
         self.longitude = float(province_data["longitude"].values[0])
