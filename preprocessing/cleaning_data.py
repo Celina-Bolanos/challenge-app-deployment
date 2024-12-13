@@ -16,7 +16,8 @@ class ZipCode():
         return f'Zipcode: {self.zip_code}'
     
     def get_coordinates(self):
-        zip_codes_df = pd.read_csv('utils/zipcode_belgium.csv')
+        zip_codes_df = pd.read_csv('..utils/zipcode_belgium.csv')
+        print(zip_codes_df.head())
         row = zip_codes_df[zip_codes_df["zip_code_col"] == self.zip_code]
         self.latitude = float(row["latitude"].values[0])
         self.longitude = float(row["longitude"].values[0])
@@ -41,7 +42,7 @@ class Province():
         """
         Returns the laitude and longitude of the province's capital.
         """
-        provinces_df = pd.read_csv('utils/provinces_zip_codes.csv')
+        provinces_df = pd.read_csv('..utils/provinces_zip_codes.csv')
         province_data = provinces_df[provinces_df["province"] == self.name]
         self.latitude = float(province_data["latitude"].values[0])
         self.longitude = float(province_data["longitude"].values[0])
@@ -170,6 +171,18 @@ def preprocess(property):
     RETURNS
     property -pandas data frame: with the encoded property's info.
     """
+
+    living_area = int(living_area)
+    terrace = int(terrace)
+    garden = int(garden)
+    facade_number = int(facade_number)
+    zip_code = int(zip_code)
+
+    property.living_area = living_area
+    property.terrace = terrace
+    property.facade_number = facade_number
+    property.zip_code = zip_code
+
     property.encode_type_of_property()
     property.encode_subtype_of_property()
     property.encode_building_condition()
@@ -178,4 +191,3 @@ def preprocess(property):
     property_df = property.to_dataframe()
     property = property_df.values
     return property
-
