@@ -1,7 +1,7 @@
 from keras.saving import load_model
 import pandas as pd
 
-filepath = '../model/model.keras'
+filepath = 'model/model.keras'
 model = load_model(filepath, custom_objects=None, compile=True, safe_mode=True)
 
 house = {
