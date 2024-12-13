@@ -113,12 +113,12 @@ class Property():
 
     def encode_type_of_property(self):
         """Converts type of property to ordinal number."""
-        self.type_of_property =  0 if self.type_of_property.lowe() == 'Apartment' else 1
+        self.type_of_property =  0 if self.type_of_property == 'Apartment' else 1
         return self.type_of_property
 
     def encode_subtype_of_property(self):
         """Converts sub-type of property to ordinal number."""
-        self.subtype_of_property = self.sub_types_dict.get(self.subtype_of_property.lower(), -1)
+        self.subtype_of_property = self.sub_types_dict.get(self.subtype_of_property, -1)
         return self.subtype_of_property
 
     def encode_building_condition(self):
