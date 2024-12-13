@@ -172,16 +172,11 @@ def preprocess(property):
     property -pandas data frame: with the encoded property's info.
     """
 
-    living_area = int(living_area)
-    terrace = int(terrace)
-    garden = int(garden)
-    facade_number = int(facade_number)
-    zip_code = int(zip_code)
-
-    property.living_area = living_area
-    property.terrace = terrace
-    property.facade_number = facade_number
-    property.zip_code = zip_code
+    property.living_area = int(property.living_area)
+    property.terrace = int(property.terrace)
+    property.garden = int(property.garden)
+    property.facade_number = int(property.facade_number)
+    property.zip_code = int(property.zip_code)
 
     property.encode_type_of_property()
     property.encode_subtype_of_property()
