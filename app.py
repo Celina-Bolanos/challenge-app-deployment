@@ -1,7 +1,7 @@
 import streamlit as st
 
 from preprocessing.cleaning_data import Property
-from predict.prediction import predict
+#from predict.prediction import predict
 
 #house = Property()
 
