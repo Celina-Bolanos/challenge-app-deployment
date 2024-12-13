@@ -38,7 +38,7 @@ subtype_of_property = st.selectbox(
         'Villa']
     )
 
-living_area = st.text_input('Living area:", "In square meters...')
+living_area = int(st.text_input('Living area:", "In square meters...'))
 
 building_condition = st.selectbox(
         'Building condition:',
@@ -50,10 +50,10 @@ equipped_kitchen = st.selectbox(
         ['Not installed', 'Installed', 'Equipped']
     )
 
-terrace = st.text_input('Size of the terrace: If there is no terrace, please enter zero (0).')
-garden = st.text_input('Size of the garden: If there is no garden, please enter zero (0).')
-facade_number = st.text_input('Number of facades: ')
-zip_code = st.text_input('Zip code:')
+terrace = int(st.text_input('Size of the terrace: If there is no terrace, please enter zero (0).'))
+garden = int(st.text_input('Size of the garden: If there is no garden, please enter zero (0).'))
+facade_number = int(st.text_input('Number of facades: '))
+zip_code = int(st.text_input('Zip code:'))
 province = st.selectbox(
         'Province',
         ['Antwerpen', 'Brabant wallon', 'Bruxelles', 'Hainaut', 'Limburg',
