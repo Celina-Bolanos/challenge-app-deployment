@@ -68,12 +68,30 @@ province = st.selectbox(
     )
 
 if st.button('Predict'):
-    house = Property(type_of_property, subtype_of_property, living_area, building_condition,
-                     equipped_kitchen, terrace, garden, facade_number, zip_code, province)
     
-    processed_data = preprocess(house)
+    if not living_area.isdigit():
+        st.error("Please enter a valid number for the living area.")
     
-    prediction = predict(processed_data)
-    predicted_price = round(prediction[0,0])
-    print(type(predicted_price))
-    st.write(f'The predicted price for this property is: {predicted_price}')
+    elif not terrace.isdigit():
+        st.error("Please enter a valid number for the terrace area.")
+    
+    elif not garden.isdigit():
+        st.error("Please enter a valid number for the garden area.")
+
+    elif not facade_number.isdigit():
+        st.error("Please enter a valid number for the number of facades.")
+    
+    elif not zip_code.isdigit() or len(zip_code > 4):
+        st.error("Please enter a valid number for the zip code.")
+    
+    else:
+
+        house = Property(type_of_property, subtype_of_property, living_area, building_condition,
+                        equipped_kitchen, terrace, garden, facade_number, zip_code, province)
+        
+        processed_data = preprocess(house)
+        
+        prediction = predict(processed_data)
+        predicted_price = round(prediction[0,0])
+        print(type(predicted_price))
+        st.write(f'The predicted price for this property is: {predicted_price}')
