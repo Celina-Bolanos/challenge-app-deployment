@@ -32,10 +32,7 @@ def predict(property):
     RETURNS
     price -float: the predicted price
     """
-    price = model.predict(property)
-    return price
+    prediction = model.predict(property)
+    pred_price = np.expm1(prediction[0,0])
 
-
-prediction = predict(house)
-pred_price = np.expm1(prediction[0,0])
-print(pred_price)
+    return pred_price
