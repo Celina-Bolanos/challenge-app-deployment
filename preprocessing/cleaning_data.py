@@ -157,13 +157,15 @@ class Property():
             'longitude': self.longitude,
             'distance_to_capital': self.distance_to_capital,
         }
+        print('House df:')
+        print(pd.DataFrame([property_data]))
         return pd.DataFrame([property_data])
 
 
 # Function that will call the property methods and convert it
 def preprocess(property):
     """
-    Returns a dataframe of the property details for prediction.
+    Returns a numpy array of the property details for prediction.
 
     PARAMS:
     property -object: that contains the property details and methods
@@ -185,4 +187,6 @@ def preprocess(property):
     property.calc_coordinates()
     property_df = property.to_dataframe()
     property = property_df.values
+    print('House nd array:')
+    print(property)
     return property
