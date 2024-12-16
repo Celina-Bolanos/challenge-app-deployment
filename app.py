@@ -54,8 +54,17 @@ facade_number = st.text_input('Number of facades: ')
 zip_code = st.text_input('Zip code:')
 province = st.selectbox(
         'Province',
-        ['Antwerpen', 'Brabant wallon', 'Bruxelles', 'Hainaut', 'Limburg',
-         'Liège', 'Luxembourg', 'Namur', 'Oost-vlaanderen', 'Vlaams brabant', 'West-vlaanderen']
+       ['Antwerp',
+ 'Brussels',
+ 'East Flanders',
+ 'Flemish Brabant',
+ 'Hainaut',
+ 'Liege',
+ 'Limburg',
+ 'Luxembourg',
+ 'Namur',
+ 'Walloon Brabant',
+ 'West Flanders']
     )
 
 if st.button('Predict'):
