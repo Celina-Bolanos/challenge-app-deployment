@@ -81,7 +81,7 @@ if st.button('Predict'):
     elif not facade_number.isdigit():
         st.error("Please enter a valid number for the number of facades.")
     
-    elif not zip_code.isdigit() or len(zip_code > 4):
+    elif not zip_code.isdigit() or len(zip_code) > 4:
         st.error("Please enter a valid number for the zip code.")
     
     else:
