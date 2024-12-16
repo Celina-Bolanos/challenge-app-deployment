@@ -1,6 +1,4 @@
 from keras.saving import load_model
-import pandas as pd
-import numpy as np
 
 filepath = 'model/model.keras' # To work locally, it must be '../model/model.keras'
 model = load_model(filepath, custom_objects=None, compile=True, safe_mode=True)
