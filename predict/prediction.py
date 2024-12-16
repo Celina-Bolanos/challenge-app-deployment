@@ -34,10 +34,10 @@ def predict(property):
     """
     prediction = model.predict(property)
 
-    pred_price_l = prediction[0,0]
-    
+    prediction_scaled = prediction[0,0] / 100
+    prediction_actual = np.expm1(prediction_scaled)
 
-    return pred_price_l
+    return prediction_actual
 
 
 predict(house)
