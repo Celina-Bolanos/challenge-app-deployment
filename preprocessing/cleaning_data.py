@@ -156,8 +156,6 @@ class Property():
             'longitude': self.longitude,
             'distance_to_capital': self.distance_to_capital,
         }
-        print('House df:')
-        print(pd.DataFrame([property_data]))
         return pd.DataFrame([property_data])
 
 
