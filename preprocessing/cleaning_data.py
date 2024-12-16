@@ -17,7 +17,6 @@ class ZipCode():
     
     def get_coordinates(self):
         zip_codes_df = pd.read_csv('utils/zipcode_belgium.csv')
-        print(zip_codes_df.head())
         row = zip_codes_df[zip_codes_df["zip_code_col"] == self.zip_code]
         self.latitude = float(row["latitude"].values[0])
         self.longitude = float(row["longitude"].values[0])
@@ -119,17 +118,17 @@ class Property():
 
     def encode_subtype_of_property(self):
         """Converts sub-type of property to ordinal number."""
-        self.subtype_of_property = self.sub_types_dict.get(self.subtype_of_property, -1)
+        self.subtype_of_property = self.sub_types_dict.get(self.subtype_of_property)
         return self.subtype_of_property
 
     def encode_building_condition(self):
         """Converts property condition of property to ordinal number."""
-        self.building_condition = self.building_statuses.get(self.building_condition, + 2)
+        self.building_condition = self.building_statuses.get(self.building_condition)
         return self.building_condition
 
     def encode_kitchen_status(self):
         """Converts kitchen's state of the property to ordinal number."""
-        self.equipped_kitchen = self.kitchen_statuses.get(self.equipped_kitchen, +2)
+        self.equipped_kitchen = self.kitchen_statuses.get(self.equipped_kitchen)
         return self.equipped_kitchen
 
     def calc_coordinates(self):
