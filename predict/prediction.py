@@ -1,7 +1,8 @@
 from keras.saving import load_model
 import pandas as pd
+import numpy as np
 
-filepath = 'model/model.keras'
+filepath = 'model/model.keras' # To work locally, it must be '../model/model.keras'
 model = load_model(filepath, custom_objects=None, compile=True, safe_mode=True)
 
 house = {
@@ -35,4 +36,6 @@ def predict(property):
     return price
 
 
-#print(predict(house))
+prediction = predict(house)
+pred_price = np.expm1(prediction[0,0])
+print(pred_price)
