@@ -41,10 +41,3 @@ def predict(property):
 
 
 predict(house)
-
-
-#print(f'Scaled prediction: {pred_price_l}')
-#print(type(pred_price_l))
-#prediction_actual = np.expm1(pred_price_l)
-#print(f'Prectiction actual: {prediction_actual}')
-#print(type(prediction_actual))
