@@ -183,7 +183,7 @@ def preprocess(property):
     property.encode_kitchen_status()
     property.calc_coordinates()
     property_df = property.to_dataframe()
-    property = property_df.values
+    property_nd = property_df.values
     print('House nd array:')
-    print(property)
-    return property
+    print(property_nd)
+    return property_nd
