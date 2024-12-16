@@ -81,12 +81,12 @@ class Property():
     Defines a real state property.
     """
     sub_types_dict = {
-        "kot": 0, "chalet": 1, "flat studio": 2, "service flat": 3,
-        "bungalow": 4, "town house": 5, "ground floor": 6, "apartment": 7,
-        "house": 8, "triplex": 9, "farmhouse": 10, "loft": 11, "duplex": 12,
-        "apartment block": 13, "country cottage": 14, "penthouse": 15,
-        "mansion": 16, "villa": 17, "exceptional property": 18,
-        "manor house": 19, "castle": 20}
+        "kot": 0, "flat studio": 1, "service flat": 2,
+        "bungalow": 3, "town house": 4, "ground floor": 5, "apartment": 6,
+        "house": 7, "triplex": 8, "farmhouse": 9, "loft": 10, "duplex": 11,
+        "apartment block": 12, "country cottage": 13, "penthouse": 14,
+        "mansion": 15, "villa": 16, "exceptional property": 17,
+        }
     
     building_statuses = {'To restore': 0, 'To renovate': 1, 'Good': 2}
     kitchen_statuses = {'Not installed': 0, 'Installed': 1, 'Equipped': 2}
