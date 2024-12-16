@@ -80,11 +80,11 @@ class Property():
     Defines a real state property.
     """
     sub_types_dict = {
-        "kot": 0, "flat studio": 1, "service flat": 2,
-        "bungalow": 3, "town house": 4, "ground floor": 5, "apartment": 6,
-        "house": 7, "triplex": 8, "farmhouse": 9, "loft": 10, "duplex": 11,
-        "apartment block": 12, "country cottage": 13, "penthouse": 14,
-        "mansion": 15, "villa": 16, "exceptional property": 17,
+        "Kot": 0, "Flat studio": 1, "Service flat": 2,
+        "Bungalow": 3, "Town house": 4, "Ground floor": 5, "Apartment": 6,
+        "House": 7, "Triplex": 8, "Farmhouse": 9, "Loft": 10, "Duplex": 11,
+        "Apartment block": 12, "Country cottage": 13, "Penthouse": 14,
+        "Mansion": 15, "Villa": 16, "Exceptional property": 17,
         }
     
     building_statuses = {'To restore': 0, 'To renovate': 1, 'Good': 2}
@@ -183,7 +183,6 @@ def preprocess(property):
     property.encode_kitchen_status()
     property.calc_coordinates()
     property_df = property.to_dataframe()
-    property_nd = property_df.values
-    print('House nd array:')
-    print(property_nd)
-    return property_nd
+    property = property_df.values
+
+    return property
