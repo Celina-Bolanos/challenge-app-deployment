@@ -9,8 +9,6 @@ to make it available for client's usage. <br>
 No installation is required. <br>
 The prediction application can be found via [this link](https://challenge-app-deployment-b3zjvchs85vva9dhdan85z.streamlit.app/).<br>
 
-https://challenge-app-deployment-b3zjvchs85vva9dhdan85z.streamlit.app/
-
 #### Usage
 1. Visit the online [predictions application](https://challenge-app-deployment-b3zjvchs85vva9dhdan85z.streamlit.app/).
 2. Enter the details of the property for which you would like to predict the price. <br>
@@ -23,24 +21,26 @@ Celina Bolaños <br>
 
 #### Timeline
 - Day 1: <br>
-    - GitHub repo <br>
-    - Project file structure <br>
+    - GitHub repo
+    - Project file structure
     - Prepocess part of the pipeline <br><br>
 
-- (Half )Day 2: <br>
+- (Half) Day 2:
     - Complete preprocess functions <br><br>
 
 - Day 3: <br>
     - Initial predictions (without scaling).
-    - Modify preprocess functions to OOP. <br>
+    - Modify preprocess functions to OOP. 
     - Scaling integraded into the model. <br><br>
 
-- Day 4: <br>
+- Day 4:
 
-    - Initial deployment. <br>
-    - Fix bugs and app errors.
+    - Initial deployment.
+    - Fix bugs and app errors.<br><br>
 
-- (Half )Day 5: <br>
+- (Half) Day 5: <br>
+    - Final deployment
+    - Presentation of the application
 
 
 #### Personal situation
