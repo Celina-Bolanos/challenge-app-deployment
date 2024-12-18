@@ -1,51 +1,53 @@
 from math import radians, sin, cos, sqrt, atan2
 import pandas as pd
 
+
 # Convert functions with the zip code to class:
-class ZipCode():
+class ZipCode:
     """
     Integer number corrsponding to a location zip code.
     """
+
     def __init__(self, zip_code):
         self.zip_code = zip_code
         self.latitude = None
         self.longitude = None
         self.get_coordinates()
-    
+
     def __str__(self):
-        return f'Zipcode: {self.zip_code}'
-    
+        return f"Zipcode: {self.zip_code}"
+
     def get_coordinates(self):
-        zip_codes_df = pd.read_csv('utils/zipcode_belgium.csv')
+        zip_codes_df = pd.read_csv("utils/zipcode_belgium.csv")
         row = zip_codes_df[zip_codes_df["zip_code_col"] == self.zip_code]
         self.latitude = float(row["latitude"].values[0])
         self.longitude = float(row["longitude"].values[0])
 
 
 # Convert functions with the province to class:
-class Province():
+class Province:
     """
     A belgian province and its capital coordinates
     """
+
     def __init__(self, name):
         self.name = name
         self.latitude = None
         self.longitude = None
         self.get_coordinates()
-    
-    def __str___(self, name):
-        return f'This is the belgian provice of {name}.'
 
-    
+    def __str___(self, name):
+        return f"This is the belgian provice of {name}."
+
     def get_coordinates(self):
         """
         Returns the laitude and longitude of the province's capital.
         """
-        provinces_df = pd.read_csv('utils/provinces_zip_codes.csv')
+        provinces_df = pd.read_csv("utils/provinces_zip_codes.csv")
         province_data = provinces_df[provinces_df["province"] == self.name]
         self.latitude = float(province_data["latitude"].values[0])
         self.longitude = float(province_data["longitude"].values[0])
-    
+
     def get_distance(self, lat1, lon1):
         """
         Returs the distance between the provice's capital and
@@ -58,7 +60,9 @@ class Province():
         RETURN
         Distance in kilometers, rounded to two decimal points
         """
-        lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, self.latitude, self.longitude])
+        lat1, lon1, lat2, lon2 = map(
+            radians, [lat1, lon1, self.latitude, self.longitude]
+        )
 
         # Haversine formula
         dlat = lat2 - lat1
@@ -75,24 +79,48 @@ class Province():
 
 
 # Create a property class to instantiate an object on API:
-class Property():
+class Property:
     """
     Defines a real state property.
     """
-    sub_types_dict = {
-        "Kot": 0, "Flat studio": 1, "Service flat": 2,
-        "Bungalow": 3, "Town house": 4, "Ground floor": 5, "Apartment": 6,
-        "House": 7, "Triplex": 8, "Farmhouse": 9, "Loft": 10, "Duplex": 11,
-        "Apartment block": 12, "Country cottage": 13, "Penthouse": 14,
-        "Mansion": 15, "Villa": 16, "Exceptional property": 17,
-        }
-    
-    building_statuses = {'To restore': 0, 'To renovate': 1, 'Good': 2}
-    kitchen_statuses = {'Not installed': 0, 'Installed': 1, 'Equipped': 2}
 
-    def __init__(self, type_of_property, subtype_of_property, living_area,
-                 building_condition, equipped_kitchen, terrace, garden,
-                 facade_number, zip_code, province):
+    sub_types_dict = {
+        "Kot": 0,
+        "Flat studio": 1,
+        "Service flat": 2,
+        "Bungalow": 3,
+        "Town house": 4,
+        "Ground floor": 5,
+        "Apartment": 6,
+        "House": 7,
+        "Triplex": 8,
+        "Farmhouse": 9,
+        "Loft": 10,
+        "Duplex": 11,
+        "Apartment block": 12,
+        "Country cottage": 13,
+        "Penthouse": 14,
+        "Mansion": 15,
+        "Villa": 16,
+        "Exceptional property": 17,
+    }
+
+    building_statuses = {"To restore": 0, "To renovate": 1, "Good": 2}
+    kitchen_statuses = {"Not installed": 0, "Installed": 1, "Equipped": 2}
+
+    def __init__(
+        self,
+        type_of_property,
+        subtype_of_property,
+        living_area,
+        building_condition,
+        equipped_kitchen,
+        terrace,
+        garden,
+        facade_number,
+        zip_code,
+        province,
+    ):
 
         self.type_of_property = type_of_property
         self.subtype_of_property = subtype_of_property
@@ -107,13 +135,13 @@ class Property():
         self.latitude = None
         self.longitude = None
         self.distance_to_capital = None
-    
+
     def __str__(self):
-        return f'A property located in {self.province}.'
+        return f"A property located in {self.province}."
 
     def encode_type_of_property(self):
         """Converts type of property to ordinal number."""
-        self.type_of_property =  0 if self.type_of_property == 'Apartment' else 1
+        self.type_of_property = 0 if self.type_of_property == "Apartment" else 1
         return self.type_of_property
 
     def encode_subtype_of_property(self):
@@ -138,23 +166,25 @@ class Property():
         self.longitude = zip_code_obj.longitude
 
         province_obj = Province(self.province)
-        self.distance_to_capital = province_obj.get_distance(self.latitude, self.longitude)
+        self.distance_to_capital = province_obj.get_distance(
+            self.latitude, self.longitude
+        )
 
     def to_dataframe(self):
         """Converts the property object to a dataframe"""
         property_data = {
-            'type_of_property': self.type_of_property,
-            'subtype_of_property': self.subtype_of_property,
-            'living_area': self.living_area,
-            'building_condition': self.building_condition,
-            'equipped_kitchen': self.equipped_kitchen,
-            'terrace': self.terrace,
-            'garden': self.garden,
-            'facade_number': self.facade_number,
-            'zip_code': self.zip_code,
-            'latitude': self.latitude,
-            'longitude': self.longitude,
-            'distance_to_capital': self.distance_to_capital,
+            "type_of_property": self.type_of_property,
+            "subtype_of_property": self.subtype_of_property,
+            "living_area": self.living_area,
+            "building_condition": self.building_condition,
+            "equipped_kitchen": self.equipped_kitchen,
+            "terrace": self.terrace,
+            "garden": self.garden,
+            "facade_number": self.facade_number,
+            "zip_code": self.zip_code,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "distance_to_capital": self.distance_to_capital,
         }
         return pd.DataFrame([property_data])
 
