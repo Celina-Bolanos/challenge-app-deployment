@@ -3,9 +3,9 @@ import streamlit as st
 from preprocessing.cleaning_data import Property, preprocess
 from predict.prediction import predict
 
-image_url = "./utils/house_header.jpg"
+image_path = "./utils/house_header.jpg"
 
-st.image(image_url, caption=None, use_container_width=True)
+st.image(image_path, caption=None, use_container_width=True)
 
 st.title("Immo Eliza Prediction App")
 st.write("Welcome! Please enter the property details below.")
@@ -72,7 +72,7 @@ province = st.selectbox(
     ],
 )
 
-if st.button("Predict"):
+if st.button("Predict price"):
 
     if not living_area.isdigit():
         st.error("Please enter a valid number for the living area.")
@@ -91,6 +91,9 @@ if st.button("Predict"):
 
     else:
 
+        loading_img = './utils/loading.gif'
+        placeholder = st.image(loading_img, caption=None, width=75)
+
         house = Property(
             type_of_property,
             subtype_of_property,
@@ -107,4 +110,5 @@ if st.button("Predict"):
         processed_data = preprocess(house)
 
         prediction = predict(processed_data)
+        placeholder.empty()
         st.write(f"The predicted price for this property is: {prediction}")
