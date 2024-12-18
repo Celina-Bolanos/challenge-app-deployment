@@ -1,5 +1,5 @@
 import streamlit as st
-
+from time import sleep
 from preprocessing.cleaning_data import Property, preprocess
 from predict.prediction import predict
 
@@ -72,43 +72,61 @@ province = st.selectbox(
     ],
 )
 
+def prop_compatibility():
+    """
+    Returs true if the selected type and subtype of property correspond to the same cathegory.
+    Eg. A kot cannot belong to the category "House"
+    Otherwise, it returns false.
+    """
+
+    houses = ["House", "Bungalow", "Country cottage", "Duplex", "Exceptional property", "Farmhouse", "Loft", "Mansion", "Town house", "Triplex", "Villa"]
+    apartments = ["Apartment", "Apartment block", "Flat studio", "Ground floor", "Kot", "Penthouse", "Service flat",]
+    if type_of_property == 'House' and subtype_of_property in apartments or type_of_property == 'Apartment' and subtype_of_property in houses:
+        st.error(f'Please correct property type and sub-type. \n {subtype_of_property} does not belong to the category {type_of_property}')
+        return False
+    else:
+        return True
+
 if st.button("Predict price"):
 
-    if not living_area.isdigit():
-        st.error("Please enter a valid number for the living area.")
+    if prop_compatibility():
 
-    elif not terrace.isdigit():
-        st.error("Please enter a valid number for the terrace area.")
+        if not living_area.isdigit():
+            st.error("Please enter a valid number for the living area.")
 
-    elif not garden.isdigit():
-        st.error("Please enter a valid number for the garden area.")
+        elif not terrace.isdigit():
+            st.error("Please enter a valid number for the terrace area.")
 
-    elif not facade_number.isdigit():
-        st.error("Please enter a valid number for the number of facades.")
+        elif not garden.isdigit():
+            st.error("Please enter a valid number for the garden area.")
 
-    elif not zip_code.isdigit() or len(zip_code) > 4:
-        st.error("Please enter a valid number for the zip code.")
+        elif not facade_number.isdigit():
+            st.error("Please enter a valid number for the number of facades.")
 
-    else:
+        elif not zip_code.isdigit() or len(zip_code) > 4:
+            st.error("Please enter a valid number for the zip code.")
 
-        loading_img = './utils/loading.gif'
-        placeholder = st.image(loading_img, caption=None, width=75)
+        else:
 
-        house = Property(
-            type_of_property,
-            subtype_of_property,
-            living_area,
-            building_condition,
-            equipped_kitchen,
-            terrace,
-            garden,
-            facade_number,
-            zip_code,
-            province,
-        )
+            loading_img = './utils/loading.gif'
+            placeholder = st.image(loading_img, caption=None, width=60)
 
-        processed_data = preprocess(house)
+            house = Property(
+                type_of_property,
+                subtype_of_property,
+                living_area,
+                building_condition,
+                equipped_kitchen,
+                terrace,
+                garden,
+                facade_number,
+                zip_code,
+                province,
+            )
 
-        prediction = predict(processed_data)
-        placeholder.empty()
-        st.write(f"The predicted price for this property is: {prediction}")
+            processed_data = preprocess(house)
+            prediction = predict(processed_data)
+            sleep(0.5)
+            placeholder.empty()
+            st.write(f"The predicted price for this property is: {prediction}")
+
