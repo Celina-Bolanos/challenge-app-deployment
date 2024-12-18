@@ -3,6 +3,10 @@ import streamlit as st
 from preprocessing.cleaning_data import Property, preprocess
 from predict.prediction import predict
 
+image_url = './utils/house_header.jpg'
+
+st.image(image_url, caption=None, use_container_width=True)
+
 st.title('Immo Eliza Prediction App')
 st.write('Welcome! Please enter the property details below.')
 st.write('When finished, click on "Predict price".')
