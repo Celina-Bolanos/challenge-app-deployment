@@ -72,6 +72,7 @@ province = st.selectbox(
     ],
 )
 
+
 def prop_compatibility():
     """
     Returs true if the selected type and subtype of property correspond to the same cathegory.
@@ -79,13 +80,41 @@ def prop_compatibility():
     Otherwise, it returns false.
     """
 
-    houses = ["House", "Bungalow", "Country cottage", "Duplex", "Exceptional property", "Farmhouse", "Loft", "Mansion", "Town house", "Triplex", "Villa"]
-    apartments = ["Apartment", "Apartment block", "Flat studio", "Ground floor", "Kot", "Penthouse", "Service flat",]
-    if type_of_property == 'House' and subtype_of_property in apartments or type_of_property == 'Apartment' and subtype_of_property in houses:
-        st.error(f'Please correct property type and sub-type. \n {subtype_of_property} does not belong to the category {type_of_property}')
+    houses = [
+        "House",
+        "Bungalow",
+        "Country cottage",
+        "Duplex",
+        "Exceptional property",
+        "Farmhouse",
+        "Loft",
+        "Mansion",
+        "Town house",
+        "Triplex",
+        "Villa",
+    ]
+    apartments = [
+        "Apartment",
+        "Apartment block",
+        "Flat studio",
+        "Ground floor",
+        "Kot",
+        "Penthouse",
+        "Service flat",
+    ]
+    if (
+        type_of_property == "House"
+        and subtype_of_property in apartments
+        or type_of_property == "Apartment"
+        and subtype_of_property in houses
+    ):
+        st.error(
+            f"Please correct property type and sub-type. \n {subtype_of_property} does not belong to the category {type_of_property}"
+        )
         return False
     else:
         return True
+
 
 if st.button("Predict price"):
 
@@ -108,7 +137,7 @@ if st.button("Predict price"):
 
         else:
 
-            loading_img = './utils/loading.gif'
+            loading_img = "./utils/loading.gif"
             placeholder = st.image(loading_img, caption=None, width=60)
 
             house = Property(
@@ -129,4 +158,3 @@ if st.button("Predict price"):
             sleep(0.5)
             placeholder.empty()
             st.write(f"The predicted price for this property is: {prediction}")
-
